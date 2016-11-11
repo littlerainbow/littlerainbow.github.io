@@ -2,7 +2,14 @@ body {
     font-family: georgia, "times new roman", times, serif;
     font-size: 10px;
 }
-
+header.main-header {
+    margin-bottom: 50px;
+}
+nav {
+    border-bottom: 1px solid #dedede;
+    margin: 0 auto;
+    width: 50%;
+}
 h1, h2 {
     text-align: center;
 }
@@ -20,16 +27,31 @@ h3 {
     color: #999;
     text-align: right;
 }
+a {
+    text-decoration: none;
+    color: #777;
+}
+a:hover {
+    text-decoration: underline;
+}
 
 p {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     float: left;
-    margin-left: 100px;
-    width: calc(100% - 100px);
+    padding-left: 20px;
+    margin: 0;
+}
+img.logo{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
 }
 section {
     width: 50%;
     margin: auto;
+}
+section:not(:last-child) {
+    margin-bottom: 20px;
 }
 article {
     border: 1px solid #999;
@@ -45,4 +67,25 @@ article:after {
 img {
     float: left;
 }
-
+ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+}
+li {
+    font-size: 1.2rem;
+    list-style: none;
+    display: inline-block;
+    padding: 10px;
+}
+.title-wrapper {
+    margin: 0 auto;
+    width: 50%;
+}
+.article-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
