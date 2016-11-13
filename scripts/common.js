@@ -38,8 +38,8 @@
 	    }
 
 	    sendRequest(resource) {
-	    	console.log(`${this.url resource this.key}`)
-    		fetch(`${this.url} ${resource} ${this.key}`)
+	    	console.log(`${this.url}${resource}${this.key}`)
+    		fetch(`${this.url}${resource}${this.key}`)
 		    	.then((response) => response.json())
 		    	.then((data) => this.createTemplate(data))
 		    	.catch((error) => console.log(error))
