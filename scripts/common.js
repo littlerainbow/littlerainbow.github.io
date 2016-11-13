@@ -7,34 +7,38 @@
 
 	class NewsStorageConstructor {
 		constructor() {
+			this.newsContainer = document.getElementById("articles");
 			this.key = "&apiKey=8c90eb13964a48e8ba53ef3b2a1eb61e";
 			this.url = " https://newsapi.org/v1/articles?source="
+			this.logoUrl = "https://pp.vk.me/c624017/v624017178/e05e/zW-tDkBCYJI.jpg"
 			this.resources = {
 				abc: "abc-news-au",
 				cnn: "cnn",
 				espn: "espn",
 				focus: "focus",
-				ign: "ign"
+				bloomberg: "bloomberg",
+				default: "abc-news-au"
 			}	
 
 		}
 
 		createTemplate(news) {
-	    	let article = document.createElement("article")
+	    	let article = document.createElement("article");
 	    	let html = `
 	            <header>
+	            	<div class="thumb-wrapper">
+						<img src="${news.urlToImage || this.logoUrl}" alt="">
+	            	</div>
 	                <h2><a href="${news.url}">${news.title}</a></h2>
-	                <h3>Published: ${news.publishedAt}</h3>
+	                <h3>Published: ${news.publishedAt.split("T").join(" ") || ''}</h3>
 	            </header>
 	            <div class="article-body">
-	            	<div class="thumb-wrapper">
-						<img src="${news.urlToImage}" alt="">
-	            	</div>
 	                <p class="article-body">
-	                    ${news.description}
+	                    ${(news.description || '')}
 	                </p>
 	            </div>`;
 	        article.innerHTML = html;
+	        this.newsContainer.appendChild(article);
 	    }
 
 	    sendRequest(resource) {
@@ -43,13 +47,12 @@
 		    		return response.json();
 		    	})
 		    	.then((data) => {
-		    		this.createTemplate(data);
+		    		data.articles.forEach((article) => this.createTemplate(article));
 		    	})
 		    	.catch((error) => console.log(error))
     	}
     	clearNews(){
-    		let articles = document.getElementById("articles");
-    		articles.innerHTML = "";
+    		this.newsContainer.innerHTML = "";
     	}
 
     	addEvents() {
@@ -69,7 +72,7 @@
     	}
     	init(){
     		this.addEvents();
-    		this.sendRequest(this.resources["abc"])
+    		this.sendRequest(this.resources.default)
     	}
 	}
 
