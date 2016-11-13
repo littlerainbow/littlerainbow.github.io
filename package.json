@@ -1,0 +1,30 @@
+{
+  "name": "littlerainbow.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d dist",
+    "watch": "babel src -d dist -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/littlerainbow/littlerainbow.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/littlerainbow/littlerainbow.github.io/issues"
+  },
+  "homepage": "https://github.com/littlerainbow/littlerainbow.github.io#readme",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+     "babel-core": "^6"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  }
+}

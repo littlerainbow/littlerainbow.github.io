@@ -16,6 +16,7 @@ h1, h2 {
 
 h1 {
     font-size: 3.6rem;
+    clear: right;
 }
 
 h2 {
@@ -41,22 +42,26 @@ p {
     padding-left: 20px;
     margin: 0;
 }
+img {
+    height: 100%;
+}
 img.logo{
     width: 80px;
     height: 80px;
     border-radius: 50%;
+    float: left;
 }
 section {
     width: 50%;
     margin: auto;
 }
-section:not(:last-child) {
-    margin-bottom: 20px;
-}
 article {
     border: 1px solid #999;
     border-radius: 8px;
     padding: 20px;
+}
+article + article {
+    margin-top: 20px;
 }
 article:after {
     display: table;
@@ -64,7 +69,9 @@ article:after {
     content: '';
     clear: both;
 }
-img {
+.thumb-wrapper {
+    width: 80px;
+    height: 80px;
     float: left;
 }
 ul {
