@@ -55,8 +55,8 @@
     	}
 
     	addEvents() {
-    		let navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-item"));
-    		navLinks.forEach((item) => {
+    		let navLinks = document.querySelectorAll(".nav-item");
+    		for( let item of navLinks) {
     			let link = item.getAttribute("data-url");
     			let resource = this.resources[link];
     			item.addEventListener("click", (e) => {
@@ -64,7 +64,7 @@
     				this.clearNews();
     				this.sendRequest(resource);
     			})
-    		});
+    		};
     	}
     	init(){
     		this.addEvents();
