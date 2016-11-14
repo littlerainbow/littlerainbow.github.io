@@ -18,8 +18,7 @@
 				focus: "focus",
 				bloomberg: "bloomberg",
 				default: "abc-news-au"
-			}	
-
+			}
 		}
 
 		createTemplate(news) {
@@ -58,9 +57,6 @@
     	addEvents() {
     		let navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-item"));
     		navLinks.forEach((item) => {
-
-    			
-
     			let link = item.getAttribute("data-url");
     			let resource = this.resources[link];
     			item.addEventListener("click", (e) => {
@@ -77,6 +73,14 @@
 	}
 
 	let news = new NewsStorageConstructor();
-	news.init();
-	
-})()
+	let logAppConfig = {
+		get (target, key) {
+			if(key == "init") {
+				console.log("App is running");
+			}
+			return target[key];
+		}
+	};
+	let proxy = new Proxy(news, logAppConfig);
+	proxy.init();
+})();

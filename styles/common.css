@@ -97,3 +97,26 @@ li {
     flex-direction: row;
     justify-content: flex-start;
 }
+
+@media screen and (max-width: 800px){
+    nav,
+    section,
+    .articles,
+    .title-wrapper {
+        width: 96%;
+        padding: 0 2%;
+    }
+
+}
+
+@media screen and (max-width: 640px){
+    img {
+        display: none;
+    }
+}
+@media screen and (max-width: 570px){
+    ul {
+        flex-direction: column;
+        text-align: center;
+    }
+}
