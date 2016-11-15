@@ -9,8 +9,8 @@
 		constructor() {
 			this.newsContainer = document.getElementById("articles");
 			this.key = "&apiKey=8c90eb13964a48e8ba53ef3b2a1eb61e";
-			this.url = " https://newsapi.org/v1/articles?source="
-			this.logoUrl = "https://pp.vk.me/c624017/v624017178/e05e/zW-tDkBCYJI.jpg"
+			this.url = " https://newsapi.org/v1/articles?source=";
+			this.logoUrl = "https://pp.vk.me/c624017/v624017178/e05e/zW-tDkBCYJI.jpg";
 			this.resources = {
 				abc: "abc-news-au",
 				cnn: "cnn",
@@ -18,18 +18,20 @@
 				focus: "focus",
 				bloomberg: "bloomberg",
 				default: "abc-news-au"
-			}
+			};
+			this.news = [];
 		}
 
 		createTemplate(news) {
-	    	let article = document.createElement("article");
-	    	let html = `
+	    	const article = document.createElement("article");
+	    	const publishedTime = news.publishedAt ? news.publishedAt.split("T").join(" ") : "";
+	    	const html = `
 	            <header>
 	            	<div class="thumb-wrapper">
 						<img src="${news.urlToImage || this.logoUrl}" alt="">
 	            	</div>
 	                <h2><a href="${news.url}">${news.title}</a></h2>
-	                <h3>Published: ${news.publishedAt.split("T").join(" ") || ''}</h3>
+	                <h3>Published: ${publishedTime}</h3>
 	            </header>
 	            <div class="article-body">
 	                <p class="article-body">
@@ -41,39 +43,39 @@
 	    }
 
 	    sendRequest(resource) {
-    		fetch(`${this.url}${resource}${this.key}`)
-		    	.then((response) => {
-		    		return response.json();
-		    	})
-		    	.then((data) => {
-		    		data.articles.forEach((article) => this.createTemplate(article));
-		    	})
+    		return fetch(`${this.url}${resource}${this.key}`)
+		    	.then((response) => response.json())
+				.then((data) =>  this.news = data)
 		    	.catch((error) => console.log(error))
     	}
     	clearNews(){
     		this.newsContainer.innerHTML = "";
     	}
-
+    	render(data) {
+            data.articles.forEach((article) => this.createTemplate(article));
+		}
     	addEvents() {
-    		let navLinks = document.querySelectorAll(".nav-item");
+    		const navLinks = document.querySelectorAll(".nav-item");
     		for( let item of navLinks) {
-    			let link = item.getAttribute("data-url");
-    			let resource = this.resources[link];
+    			const link = item.getAttribute("data-url");
+    			const resource = this.resources[link];
     			item.addEventListener("click", (e) => {
     				e.preventDefault();
     				this.clearNews();
-    				this.sendRequest(resource);
+    				this.sendRequest(resource).then(() => this.render(this.news));
+
     			})
-    		};
+    		}
     	}
     	init(){
     		this.addEvents();
-    		this.sendRequest(this.resources.default)
+    		this.sendRequest(this.resources.default).then(() => this.render(this.news));
+
     	}
 	}
 
-	let news = new NewsStorageConstructor();
-	let logAppConfig = {
+	const news = new NewsStorageConstructor();
+	const logAppConfig = {
 		get (target, key) {
 			if(key == "init") {
 				console.log("App is running");
@@ -81,6 +83,6 @@
 			return target[key];
 		}
 	};
-	let proxy = new Proxy(news, logAppConfig);
+	const proxy = new Proxy(news, logAppConfig);
 	proxy.init();
 })();
