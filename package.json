@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src -d dist",
-    "watch": "babel src -d dist -w"
+    "build": "babel scripts -d dist",
+    "watch": "babel scripts -d dist -w"
   },
   "repository": {
     "type": "git",
@@ -20,11 +20,18 @@
   "homepage": "https://github.com/littlerainbow/littlerainbow.github.io#readme",
   "devDependencies": {
     "babel-cli": "^6.18.0",
-     "babel-core": "^6"
+    "babel-core": "^6",
+    "babel-plugin-es6-promise": "^1.0.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015-loose": "^8.0.0"
   },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
-  }
+  "dependencies": {
+    "es6-promise": "^4.0.5",
+    "fetch-polyfill": "^0.8.2",
+    "isomorphic-fetch": "^2.2.1",
+    "whatwg-fetch": "^2.0.1"
+  },
+  "plugins": [
+    "es6-promise"
+  ]
 }

@@ -63,26 +63,26 @@
     				e.preventDefault();
     				this.clearNews();
     				this.sendRequest(resource).then(() => this.render(this.news));
-
     			})
     		}
     	}
     	init(){
     		this.addEvents();
     		this.sendRequest(this.resources.default).then(() => this.render(this.news));
-
     	}
 	}
 
 	const news = new NewsStorageConstructor();
-	const logAppConfig = {
-		get (target, key) {
-			if(key == "init") {
-				console.log("App is running");
-			}
-			return target[key];
-		}
-	};
-	const proxy = new Proxy(news, logAppConfig);
-	proxy.init();
+
+	news.init();
+	// const logAppConfig = {
+	// 	get (target, key) {
+	// 		if(key == "init") {
+	// 			console.log("App is running");
+	// 		}
+	// 		return target[key];
+	// 	}
+	// };
+	// const proxy = new Proxy(news, logAppConfig);
+	// proxy.init();
 })();
