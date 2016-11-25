@@ -8,7 +8,7 @@
 	class NewsStorage {
 		constructor(news, sources){
 			this.news = news;
-			this.currentSourse;
+			this.currentSourse = '';
 			this.sources = sources || [];
 		}
 		setNews(news){
@@ -19,33 +19,36 @@
 		}
 	}
 
-	class Controller {
+	class NewsController {
 		constructor (news){
             this.article = document.createElement("article");
             this.newsContainer = document.getElementById("articles");
             this.publishedTime = news.publishedAt ? news.publishedAt.split("T").join(" ") : "";
-		}
 
-		appendArticles(articles){
-            this.article.innerHTML = html;
-            newsContainer.appendChild(article);
+			this.storage = new NewsStorage();
 		}
 
 		createArticles () {
+
 			Service
 				.sendRequest('1','3','2')
 				.then(res => View.createTemplate(data))
 				.then(res => {
-					doc.ap
+                    this.article.innerHTML = res;
+                    this.newsContainer.appendChild(this.article);
 				})
 				.catch(err => {
-					console.log(err)
+					console.warn(err)
 				})
+		}
+
+		handler(updatedNewsBlock) {
+            this.storage.currentSourse = updatedNewsBlock;
 		}
 
 	}
 
-	class ViewNews {
+	class NewsView {
 
 		createTemplate(news){
 
@@ -67,29 +70,24 @@
             return html;
 		}
 
-		setHandler(e){
-			const el = e.target;
-
-		}
-		init(){
-
-		}
 	}
 
     export default new ViewNews();
 
-	class ViewNavigation{
+	class NavigationView{
 
 		constructor(){
             this.navLinks = document.querySelectorAll(".nav-item");
 		}
 
-        addEvents(handler) {
+        setHandler(handler, resources) {
 			for( let item of this.navLinks) {
 				const link = item.getAttribute("data-url");
 				const resource = resources[link];
 
-				item.addEventListener("click", handler(e));
+				item.addEventListener("click", (e) => {
+					handler(resource);
+				});
 			}
 		}
 	}
@@ -105,55 +103,56 @@
 		news.articles.forEach((article) => this.createTemplate(article));
 	}
 
-	function addEvents() {
-		const navLinks = document.querySelectorAll(".nav-item");
-		const newsContainer = document.getElementById("articles");
-		for( let item of navLinks) {
-			const link = item.getAttribute("data-url");
-			const resource = resources[link];
-			item.addEventListener("click", (e) => {
-				e.preventDefault();
-				clearBlock(newsContainer);
-				sendRequest(resource).then(() => renderNews(news));
-			})
-		}
+    function clearBlock(selector) {
+        selector.innerHTML = "";
     }
-    function createTemplate(news) {
-		const article = document.createElement("article");
-		const newsContainer = document.getElementById("articles");
-		const publishedTime = news.publishedAt ? news.publishedAt.split("T").join(" ") : "";
-		const html = `
-	        <header>
-	        	<div class="thumb-wrapper">
-					<img src="${news.urlToImage || this.logoUrl}" alt="">
-	        	</div>
-	            <h2><a href="${news.url}">${news.title}</a></h2>
-	            <h3>Published: ${publishedTime}</h3>
-	        </header>
-	        <div class="article-body">
-	            <p class="article-body">
-	                ${(news.description || '')}
-	            </p>
-	        </div>`;
-	    article.innerHTML = html;
-	    newsContainer.appendChild(article);
-	}
 
-	function clearBlock(selector) {
-		selector.innerHTML = "";
-	}
+    class Service {
 
-	class Service {
-
-        sendRequest(url, key, resources) {
+        sendRequest(url, key, resource) {
             return fetch(`${url}${resource}${key}`)
                 .then((response) => response.json())
                 .then((data) => data)
-                .catch((error) => console.log(error))
+                .catch((error) => console.warn(error))
         }
-	}
+    }
 
-	export default new Service();
+    export default new Service();
+
+    // function addEvents() {
+		// const navLinks = document.querySelectorAll(".nav-item");
+		// const newsContainer = document.getElementById("articles");
+		// for( let item of navLinks) {
+		// 	const link = item.getAttribute("data-url");
+		// 	const resource = resources[link];
+		// 	item.addEventListener("click", (e) => {
+		// 		e.preventDefault();
+		// 		clearBlock(newsContainer);
+		// 		sendRequest(resource).then(() => renderNews(news));
+		// 	})
+		// }
+    // }
+    // function createTemplate(news) {
+		// const article = document.createElement("article");
+		// const newsContainer = document.getElementById("articles");
+		// const publishedTime = news.publishedAt ? news.publishedAt.split("T").join(" ") : "";
+		// const html = `
+	 //        <header>
+	 //        	<div class="thumb-wrapper">
+		// 			<img src="${news.urlToImage || this.logoUrl}" alt="">
+	 //        	</div>
+	 //            <h2><a href="${news.url}">${news.title}</a></h2>
+	 //            <h3>Published: ${publishedTime}</h3>
+	 //        </header>
+	 //        <div class="article-body">
+	 //            <p class="article-body">
+	 //                ${(news.description || '')}
+	 //            </p>
+	 //        </div>`;
+	 //    article.innerHTML = html;
+	 //    newsContainer.appendChild(article);
+    // }
+
 
 
 	// function sendRequest(url, key, resources) {
