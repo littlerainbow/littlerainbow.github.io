@@ -7,7 +7,7 @@
 
 	class NewsStorage {
 		constructor(news, sources){
-			this.news = news;
+			//this.news = news;
 			this.currentSourse = '';
 			this.sources = sources || [];
 		}
@@ -17,22 +17,30 @@
 		getNews(){
 			return this.news;
 		}
+		setDefaultResaurse(){
+            this.currentSourse = this.sources[0] ? this.sources[0] : "";
+			return this.currentSourse;
+		}
 	}
 
 	class NewsController {
-		constructor (news){
+		constructor (url, key){
             this.article = document.createElement("article");
             this.newsContainer = document.getElementById("articles");
-            this.publishedTime = news.publishedAt ? news.publishedAt.split("T").join(" ") : "";
-
-			this.storage = new NewsStorage();
+            this.storage = new NewsStorage();
+            this.publishedTime = storage.publishedAt ? storage.publishedAt.split("T").join(" ") : "";
+            this.url = url;
+            this.key = key;
 		}
 
 		createArticles () {
 
 			Service
-				.sendRequest('1','3','2')
-				.then(res => View.createTemplate(data))
+				.sendRequest(this.url, this.key, this.storage.currentSourse)
+				.then(res => {
+					res
+                    ViewNews.createTemplate();
+				})
 				.then(res => {
                     this.article.innerHTML = res;
                     this.newsContainer.appendChild(this.article);
@@ -45,7 +53,6 @@
 		handler(updatedNewsBlock) {
             this.storage.currentSourse = updatedNewsBlock;
 		}
-
 	}
 
 	class NewsView {
