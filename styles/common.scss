@@ -9,6 +9,10 @@ nav {
     border-bottom: 1px solid #dedede;
     margin: 0 auto;
     width: 50%;
+    @media screen and (max-width: 800px){
+        width: 96%;
+        padding: 0 2%;
+    }
 }
 h1, h2, h4 {
     text-align: center;
@@ -31,10 +35,10 @@ h3 {
 a {
     text-decoration: none;
     color: #777;
-}
-a:hover {
+    &:hover {
     text-decoration: underline;
 }
+
 
 p {
     font-size: 1.2rem;
@@ -46,30 +50,44 @@ img {
     border-radius: 6px;
     width: 100%;
     height: auto;
-}
-img.logo{
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    float: left;
+    &.logo{
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        float: left;
+    }
+
+    @media screen and (max-width: 640px){
+        display: none;
+    }
 }
 section {
     width: 50%;
     margin: auto;
+    @media screen and (max-width: 800px){
+        width: 96%;
+        padding: 0 2%;
+    }
+}
+.articles {
+    @media screen and (max-width: 800px){
+        width: 96%;
+        padding: 0 2%;
+    }
 }
 article {
     border: 1px solid #999;
     border-radius: 8px;
     padding: 20px;
-}
-article + article {
-    margin-top: 20px;
-}
-article:after {
-    display: table;
-    height: 1%;
-    content: '';
-    clear: both;
+    & + article {
+        margin-top: 20px;
+    }
+    &:after {
+        display: table;
+        height: 1%;
+        content: '';
+        clear: both;
+    }
 }
 .thumb-wrapper {
     height: auto;
@@ -81,6 +99,10 @@ ul {
     justify-content: space-between;
     padding: 0;
     margin: 0;
+    @media screen and (max-width: 570px){
+        flex-direction: column;
+        text-align: center;
+    }
 }
 li {
     font-size: 1.2rem;
@@ -91,6 +113,10 @@ li {
 .title-wrapper {
     margin: 0 auto;
     width: 50%;
+    @media screen and (max-width: 800px){
+        width: 96%;
+        padding: 0 2%;
+    }
 }
 .article-body {
     display: flex;
@@ -98,25 +124,5 @@ li {
     justify-content: flex-start;
 }
 
-@media screen and (max-width: 800px){
-    nav,
-    section,
-    .articles,
-    .title-wrapper {
-        width: 96%;
-        padding: 0 2%;
-    }
 
-}
 
-@media screen and (max-width: 640px){
-    img {
-        display: none;
-    }
-}
-@media screen and (max-width: 570px){
-    ul {
-        flex-direction: column;
-        text-align: center;
-    }
-}

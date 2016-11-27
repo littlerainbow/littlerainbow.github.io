@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel scripts -d dist",
-    "watch": "babel scripts -d dist -w"
+    "watch": "babel scripts -d dist -w",
+    "start": "webpack-dev-server --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -19,11 +20,20 @@
   },
   "homepage": "https://github.com/littlerainbow/littlerainbow.github.io#readme",
   "devDependencies": {
+    "autoprefixer-loader": "^3.2.0",
     "babel-cli": "^6.18.0",
     "babel-core": "^6",
+    "babel-loader": "^6.2.8",
     "babel-plugin-es6-promise": "^1.0.0",
     "babel-polyfill": "^6.16.0",
-    "babel-preset-es2015-loose": "^8.0.0"
+    "babel-preset-es2015-loose": "^8.0.0",
+    "css-loader": "^0.26.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "node-sass": "^3.13.0",
+    "postcss-loader": "^1.1.1",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.3"
   },
   "dependencies": {
     "es6-promise": "^4.0.5",
