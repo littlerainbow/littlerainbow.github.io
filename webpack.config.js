@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
 	entry: ["./scripts/polyfill.min.js", "./scripts/fetch.js", "./scripts/common.js" ],
@@ -17,20 +17,22 @@ module.exports = {
 	     },
 	 },
 	 {
-	 	test: /\.scss$/,
-        loader: "style!css!autoprefixer!resolve-url!sass?sourceMap"
+         test: /\.scss$/,
+         loaders: ["style-loader", "css-loader?sourceMap", "sass-loader?sourceMap"]
 	 }],
 	},
-	// plugins: [
- //        new webpack.optimize.UglifyJsPlugin({
- //            compress: {
- //                warnings: false,
- //            },
- //            output: {
- //                comments: false,
- //            },
- //        })
- //    ],
+
+	plugins: [
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         warnings: false,
+        //     },
+        //     output: {
+        //         comments: false,
+        //     },
+        // })
+        new ExtractTextPlugin("./common.css")
+    ],
     devServer: {
 	    hot: true
 	},
