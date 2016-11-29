@@ -1,7 +1,7 @@
 /**
  * Created by Artsiom_Papou on 11/11/2016.
  */
-// import '../styles/common.scss';
+ import '../styles/common.scss';
  import {NavigationView} from "./nav-view";
  import {ViewNews} from "./news-view";
  import {getNews} from "./news-request";
@@ -16,6 +16,7 @@
             this.article = document.createElement("article");
 			this.storage = new NewsStorage(resources);
 			this.resources = resources;
+			this.navLinks = document.querySelectorAll(".nav-item");
             this.url = url;
             this.key = key;
 		}
@@ -43,7 +44,7 @@
 			const nav = new NavigationView();
 			this.storage.setDefaultResaurse()
 			this.createArticles();
-			nav.setHandler(this.handler, this.resources).bind(this);
+			nav.setHandler.apply(this,[this.handler.bind(this), this.resources, this.navLinks]);
 
 		}
 	}

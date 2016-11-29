@@ -13,25 +13,25 @@ module.exports = {
 	     exclude: /node_modules/,
 	     loader: 'babel-loader',
 	     query: {
-	        presets: ['babel-preset-es2015-loose'] 
+	        presets: ['babel-preset-es2015-loose']
 	     },
 	 },
 	 {
-         test: /\.scss$/,
-         loaders: ["style-loader", "css-loader?sourceMap", "sass-loader?sourceMap"]
+        test: /\.scss$/i,
+        loader: ExtractTextPlugin.extract(['css!autoprefixer?browsers=last 2 versions', 'sass'])
 	 }],
 	},
 
 	plugins: [
-        // new webpack.optimize.UglifyJsPlugin({
-        //     compress: {
-        //         warnings: false,
-        //     },
-        //     output: {
-        //         comments: false,
-        //     },
-        // })
-        new ExtractTextPlugin("./common.css")
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false,
+            },
+            output: {
+                comments: false,
+            },
+        })
+        new ExtractTextPlugin("./dist/css/common.css")
     ],
     devServer: {
 	    hot: true
