@@ -14,7 +14,7 @@
 	class NewsController {
 		constructor (url, key, resources){
             this.article = document.createElement("article");
-			this.storage = null;
+			this.storage = new NewsStorage(resources);
 			this.resources = resources;
             this.url = url;
             this.key = key;
@@ -35,13 +35,16 @@
 		}
 
 		handler(updatedNewsBlock) {
-			const updatedNews = new ViewNews();
-            this.storage.currentSourse = updatedNewsBlock;
+
+			console.log(this)
+			//debugger
+			this.storage.currentSourse = updatedNewsBlock;
+            this.createArticles();
 		}
 
 		init(){
 			const nav = new NavigationView();
-			this.storage = new NewsStorage(this.resources);
+			this.storage.setDefaultResaurse()
 			this.createArticles();
 			nav.setHandler(this.handler, this.resources)
 
