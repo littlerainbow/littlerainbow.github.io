@@ -1,7 +1,7 @@
 /**
  * Created by Artsiom_Papou on 11/11/2016.
  */
-
+// import '../styles/common.scss';
  import {NavigationView} from "./nav-view";
  import {ViewNews} from "./news-view";
  import {getNews} from "./news-request";
@@ -35,9 +35,6 @@
 		}
 
 		handler(updatedNewsBlock) {
-
-			console.log(this)
-			//debugger
 			this.storage.currentSourse = updatedNewsBlock;
             this.createArticles();
 		}
@@ -46,7 +43,7 @@
 			const nav = new NavigationView();
 			this.storage.setDefaultResaurse()
 			this.createArticles();
-			nav.setHandler(this.handler, this.resources)
+			nav.setHandler(this.handler, this.resources).bind(this);
 
 		}
 	}

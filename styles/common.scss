@@ -33,12 +33,12 @@ h3 {
     text-align: right;
 }
 a {
-    text-decoration: none;
-    color: #777;
-    &:hover {
+  text-decoration: none;
+  color: #777;
+  &:hover {
     text-decoration: underline;
+  }
 }
-
 
 p {
     font-size: 1.2rem;
