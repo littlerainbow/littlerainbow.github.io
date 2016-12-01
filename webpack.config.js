@@ -32,8 +32,8 @@ module.exports = {
             },
             output: {
                 comments: false,
-            },
-        })
+            }
+        }),
         new ExtractTextPlugin("./dist/css/common.css")
     ],
     devServer: {
