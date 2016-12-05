@@ -19,21 +19,21 @@ export class ViewNews {
 
 	createTemplate(news){
 		
-	const defaultImg = "https://pp.vk.me/c624017/v624017178/e05e/zW-tDkBCYJI.jpg";	
-		
-	const html = `
-		 <header>
-			 <div class="thumb-wrapper">
-				 <img src="${news.urlToImage || defaultImg}" alt="">
-			 </div>
-			 <h2><a href="${news.url}">${news.title}</a></h2>
-			 <h3>Published: ${this.parseTime(news)}</h3>
-		 </header>
-		 <div class="article-body">
-			 <p class="article-body">
-				 ${(news.description || '')}
-			 </p>
-		 </div>`;
+		const defaultImg = "https://pp.vk.me/c624017/v624017178/e05e/zW-tDkBCYJI.jpg";	
+			
+		const html = `
+			 <header>
+				 <div class="thumb-wrapper">
+					 <img src="${news.urlToImage || defaultImg}" alt="">
+				 </div>
+				 <h2><a href="${news.url}">${news.title}</a></h2>
+				 <h3>Published: ${this.parseTime(news)}</h3>
+			 </header>
+			 <div class="article-body">
+				 <p class="article-body">
+					 ${(news.description || '')}
+				 </p>
+			 </div>`;
 
 		return html;
 	}

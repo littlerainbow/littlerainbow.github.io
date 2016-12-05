@@ -5,14 +5,16 @@
  import {NavigationView} from "./nav-view";
  import {ViewNews} from "./news-view";
  import {getNews} from "./news-request";
- import {NewsStorage} from "./news-storage";
+ import NewsStorage from "./news-storage";
  
 
 (function () {
 	"use strict";
 
 	class NewsController {
+
 		constructor (url, key, resources){
+	
             this.article = document.createElement("article");
 			this.storage = new NewsStorage(resources);
 			this.resources = resources;
