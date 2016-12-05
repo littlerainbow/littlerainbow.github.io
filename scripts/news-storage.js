@@ -1,5 +1,6 @@
 let instance = null;
 
+
 class NewsStorage {
 	constructor(sources){
 
@@ -10,8 +11,7 @@ class NewsStorage {
 		this.sources = sources || {};
 		this.currentSourse = this.sources.default ? this.sources.default : "";
 
-		return this;
-
+		return instance;
 	}
 	setDefaultResourse(){
         this.currentSourse = this.sources.default ? this.sources.default : "";
