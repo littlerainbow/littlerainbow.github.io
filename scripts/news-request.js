@@ -1,7 +1,12 @@
 export class getNews {
 
-    sendRequest(url, key, resource) {
-        return fetch(`${url}${resource}${key}`)
+    constructor(APIkey){
+        this.url =
+        this.key = APIkey;
+    }
+
+    sendRequest(resource) {
+        return fetch(`${this.url}${resource}${this.key}`)
             .then((response) => response.json())
             .then((data) => data)
             .catch((error) => console.warn(error))
