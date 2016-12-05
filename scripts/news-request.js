@@ -1,16 +1,16 @@
-// let intance = null;
+// let instance = null;
 class getNews {
 
     constructor(APIkey){
 
-        // if(!intance) {
-        //     intance = this;
+        // if(!instance) {
+        //     instance = this;
         // }
 
         this.url = "https://newsapi.org/v1/articles?source=";
         this.key = APIkey;
 
-        // return intance;
+        // return instance;
     }
 
     sendRequest(resource) {
