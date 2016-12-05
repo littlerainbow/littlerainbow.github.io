@@ -4,7 +4,7 @@
  import '../styles/common.scss';
  import {NavigationView} from "./nav-view";
  import {ViewNews} from "./news-view";
- import {getNews} from "./news-request";
+ import NewsProxy from "./request-proxy";
  import {NewsStorage} from "./news-storage";
  
 
@@ -12,20 +12,19 @@
 	"use strict";
 
 	class NewsController {
-		constructor (url, key, resources){
+		constructor (key, resources){
             this.article = document.createElement("article");
 			this.storage = new NewsStorage(resources);
 			this.resources = resources;
 			this.navLinks = document.querySelectorAll(".nav-item");
-            this.url = url;
             this.key = key;
 		}
 
 		createArticles () {
-			const request = new getNews();
+			const request = new NewsProxy(this.key);
 
 			request
-				.sendRequest(this.url, this.key, this.storage.currentSourse)
+				.getNews(this.storage.currentSourse)
 				.then(res => {
 					const updatedNews = new ViewNews();
 					updatedNews.render(res.articles);
@@ -42,7 +41,7 @@
 
 		init(){
 			const nav = new NavigationView();
-			this.storage.setDefaultResaurse()
+			this.storage.setDefaultResaurse();
 			this.createArticles();
 			nav.setHandler.apply(this,[this.handler.bind(this), this.resources, this.navLinks]);
 
@@ -57,9 +56,8 @@
 				bloomberg: "bloomberg",
 				default: "abc-news-au"
 			};
-	const url = "https://newsapi.org/v1/articles?source=";
 	const key = "&apiKey=8c90eb13964a48e8ba53ef3b2a1eb61e";
-	const news = new NewsController(url, key, resources);
+	const news = new NewsController(key, resources);
 	news.init();
 
 

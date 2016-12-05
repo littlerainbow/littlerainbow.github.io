@@ -1,8 +1,16 @@
-export class getNews {
+// let intance = null;
+class getNews {
 
     constructor(APIkey){
-        this.url =
+
+        // if(!intance) {
+        //     intance = this;
+        // }
+
+        this.url = "https://newsapi.org/v1/articles?source=";
         this.key = APIkey;
+
+        // return intance;
     }
 
     sendRequest(resource) {
@@ -12,3 +20,5 @@ export class getNews {
             .catch((error) => console.warn(error))
     }
 }
+
+export default getNews;
