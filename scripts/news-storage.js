@@ -9,6 +9,7 @@ class NewsStorage {
 		}
 
 		this.sources = sources || {};
+		this.cache = {};
 		this.currentSourse = this.sources.default ? this.sources.default : "";
 		this.cache = {};
 
@@ -18,13 +19,15 @@ class NewsStorage {
         this.currentSourse = this.sources.default ? this.sources.default : "";
 		return this.currentSourse;
 	}
-	addToCache(resource, newArticles){
-        this.cache[resource] = newArticles;
+	addToCache(source, articles){
+		this.cache[source] = articles;
 	}
-	removeFromCache(resource){
-        delete this.cache[resource];
-    }
-
+	removeFromCache(source) {
+		delete this.cache[source];
+	}
+	clearCache(){
+		this.cache = {};
+	}
 }
 
 export default NewsStorage;

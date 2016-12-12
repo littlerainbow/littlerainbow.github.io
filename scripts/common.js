@@ -7,6 +7,7 @@
  import {getNews} from "./news-request";
  import NewsStorage from "./news-storage";
  import NewsProxy from "./request-proxy";
+ import dbProvider from "./db-controller"
  
 
 (function () {
@@ -32,8 +33,6 @@
 				.getNews(this.storage.currentSourse)
 				.then(res => {
 					const updatedNews = new ViewNews();
-					
-					//console.dir(updatedNews)
 					updatedNews.render(res.articles);
 				})
 				.catch(err => {
