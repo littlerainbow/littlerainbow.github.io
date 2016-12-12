@@ -54,9 +54,6 @@ class ProxyRequest extends getNews {
             if (!this.isItTimeToUpdate()){
                 
                 return new Promise((resolve) => resolve(this.requestCache[resource]));
-                // console.log(2)
-                // console.log(this.requestCache[resource])
-                // return this.requestCache[resource];
 
             } else {
 
