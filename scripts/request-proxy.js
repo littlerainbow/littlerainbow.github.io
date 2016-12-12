@@ -7,7 +7,7 @@ let instance = null;
 
 class ProxyRequest extends getNews {
 
-    constructor(key){
+    constructor(key, cache){
 
         super();
 
@@ -15,7 +15,7 @@ class ProxyRequest extends getNews {
             instance = this;
         }
 
-        this.requestCache = {};
+        this.requestCache = cache;
         this.time = new Date();
         this.APIkey = key;
 
@@ -43,8 +43,6 @@ class ProxyRequest extends getNews {
             return requests.sendRequest(resource)
                 .then(data => {
                     this.requestCache[resource] = data;
-                    console.log(1)
-                    console.log(this.requestCache)
                     return this.requestCache[resource];
                 })
                 .catch((error) => console.warn(error));
@@ -54,17 +52,12 @@ class ProxyRequest extends getNews {
             if (!this.isItTimeToUpdate()){
                 
                 return new Promise((resolve) => resolve(this.requestCache[resource]));
-                // console.log(2)
-                // console.log(this.requestCache[resource])
-                // return this.requestCache[resource];
 
             } else {
 
                 return requests.sendRequest(resource)
                     .then(data => {
                         this.requestCache[resource] = data;
-                        console.log(3)
-                        console.log(this.requestCache)
                         return this.requestCache[resource];
                     })
                     .catch((error) => console.warn(error))
