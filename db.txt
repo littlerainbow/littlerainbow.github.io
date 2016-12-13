@@ -1,0 +1,32 @@
+Arcive: 
+	mongodump --db <yourdb> --gzip --archive=/path/to/archive
+CRUD:
+
+	1) db.collection.insert({name: "alex", age: 18})
+	2) db.collection.find({name: 1}).limit(5)
+	3) db.collection.update({age: { $lt: 18 }}, $set: {status: "Teenager"}, multi: true)
+	4) db.collection.remove({status: "Teenager" })
+Index:
+	db.collection.index({ name: 1})
+Pattern
+
+{
+	_id: 184648487,
+	articles: [
+		{
+			title: "Some Title",
+			test: "Here, we discuss methods that utilize MongoDB commands for bulk data export/import and database copying. We also describe a method applicable to replica set clusters, where you can take advantage of MongoDB’s internal replication process to bring data from one MongoDB instance into another."
+			tags: ["ffe" , "ded"],
+			resource_id: "resoure",
+			comments: ["dwfd", "dwdw"]
+		}
+	]
+}
+
+{
+	_id: "resoure",
+	resourse: "ABC"
+
+}
+
+
