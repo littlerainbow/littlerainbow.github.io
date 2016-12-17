@@ -4,7 +4,7 @@ CRUD:
 
 	1) db.collection.insert({name: "alex", age: 18})
 	2) db.collection.find({name: 1}).limit(5)
-	3) db.collection.update({age: { $lt: 18 }}, $set: {status: "Teenager"}, multi: true)
+	3) db.collection.update({age: { $lt: 18 }}, {$set: {status: "Teenager"}}, {multi: true})
 	4) db.collection.remove({status: "Teenager" })
 Index:
 	db.collection.index({ name: 1})
@@ -17,16 +17,134 @@ Pattern
 			title: "Some Title",
 			test: "Here, we discuss methods that utilize MongoDB commands for bulk data export/import and database copying. We also describe a method applicable to replica set clusters, where you can take advantage of MongoDB’s internal replication process to bring data from one MongoDB instance into another."
 			tags: ["ffe" , "ded"],
-			resource_id: "resoure",
+			resource_name: "abc",
 			comments: ["dwfd", "dwdw"]
 		}
 	]
+}.find(resource_id: "91121619191")
+
+{
+	_id: "16161616",
+	name: "ABC grgrgr"
 }
 
 {
-	_id: "resoure",
-	resourse: "ABC"
-
+    _id: ObjectId("584fc4e353d78b1833818ba7"),
+    "name": {
+          "first": "Shauna",
+          "last": "Wagner"
+        }
 }
 
-
+[
+  {
+    "_id": "584fc4e353d78b6033818ba7",
+    "index": 0,
+    "guid": "f8c6aedc-cae6-40a3-9837-275559f7c253",
+    "isActive": false,
+    "balance": "$2,868.92",
+    "picture": "http://placehold.it/32x32",
+    "age": 32,
+    "eyeColor": "brown",
+    "name_id": ObjectId("584fc4e353d78b1833818ba7")
+  },
+  {
+    "_id": "584fc4e37b93089cc166010d",
+    "index": 1,
+    "guid": "6ea6ec96-74a8-466b-b934-9c3b72e6dfda",
+    "isActive": true,
+    "balance": "$1,473.02",
+    "picture": "http://placehold.it/32x32",
+    "age": 26,
+    "eyeColor": "blue",
+    "name_id": ObjectId("584fc4e353d78b1833818ba7")
+  },
+  {
+    "_id": "584fc4e3f7b53c6e07751177",
+    "index": 2,
+    "guid": "78d7c334-f18e-4392-951a-8de8f6ef28b2",
+    "isActive": true,
+    "balance": "$2,908.28",
+    "picture": "http://placehold.it/32x32",
+    "age": 25,
+    "eyeColor": "brown",
+    "name_id": ObjectId("584fc4e353d78b1833818ba7")
+  },
+  {
+    "_id": "584fc4e3da051e794008cc91",
+    "index": 3,
+    "guid": "1d3518de-32c6-4b20-a773-3bf7a3237ee8",
+    "isActive": true,
+    "balance": "$2,088.73",
+    "picture": "http://placehold.it/32x32",
+    "age": 30,
+    "eyeColor": "green",
+     "name_id": ObjectId("584fc4e353d78b1833818ba7")
+  },
+  {
+    "_id": "584fc4e36208467e0e191937",
+    "index": 4,
+    "guid": "d0907e94-8a39-4897-9b07-c03455c630a9",
+    "isActive": true,
+    "balance": "$3,961.85",
+    "picture": "http://placehold.it/32x32",
+    "age": 34,
+    "eyeColor": "green",
+    "name_id": ObjectId("584fc4e353d78b1833818ba7")
+  },
+  {
+    "_id": "584fc4e372d2694302015126",
+    "index": 5,
+    "guid": "fcc4c8ae-2035-4896-a500-4348bf8f0deb",
+    "isActive": true,
+    "balance": "$3,151.37",
+    "picture": "http://placehold.it/32x32",
+    "age": 23,
+    "eyeColor": "blue",
+     "name_id": ObjectId("584fc4e353d78b1833818ba7")
+  },
+  {
+    "_id": "584fc4e3c6019351fb4cabb7",
+    "index": 6,
+    "guid": "a384c73c-8904-48c5-838b-6055d9c936ac",
+    "isActive": true,
+    "balance": "$3,735.21",
+    "picture": "http://placehold.it/32x32",
+    "age": 24,
+    "eyeColor": "blue",
+     "name_id": ObjectId("584fc4e353d78b1833818ba7")
+  },
+  {
+    "_id": "584fc4e39d531655dc4b7739",
+    "index": 7,
+    "guid": "0453628f-d2d4-4d13-925d-30642977808a",
+    "isActive": true,
+    "balance": "$1,988.67",
+    "picture": "http://placehold.it/32x32",
+    "age": 39,
+    "eyeColor": "blue",
+    "name_id": ObjectId("584fc4e353d78b1833818ba7")
+  },
+  {
+    "_id": "584fc4e3e28eca671634a680",
+    "index": 8,
+    "guid": "8b18a4d7-ff16-4867-9f32-ea28927ca0b9",
+    "isActive": false,
+    "balance": "$2,384.43",
+    "picture": "http://placehold.it/32x32",
+    "age": 32,
+    "eyeColor": "brown",
+    "name_id": ObjectId("584fc4e353d78b1833818ba7")
+  },
+  {
+    "_id": "584fc4e33a3c85dba6dd71a0",
+    "index": 9,
+    "guid": "fb13e5a1-7355-4d49-a60a-56fc381300bc",
+    "isActive": true,
+    "balance": "$2,844.81",
+    "picture": "http://placehold.it/32x32",
+    "age": 36,
+    "eyeColor": "brown",
+    "name_id": ObjectId("584fc4e353d78b1833818ba7")
+  }
+]
