@@ -5,30 +5,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
+
 var index = require('./routes/index');
 var users = require('./routes/users');
-
+var admin = require('./routes/admin');
+var api = require("./routes/api");
+var article = require("./routes/api/article")
 var app = express();
-var mongoose = require('mongoose');
-
-
-mongoose.connect('mongodb://admin:123456@ds113628.mlab.com:13628/fc');
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-    console.log("we're connected!")
-});
-
-var kittySchema = mongoose.Schema({
-    name: String
-});
-
-var Kitten = mongoose.model('Kitten', kittySchema);
-
-var silence = new Kitten({ name: 'Silence' });
-console.log(silence.name); // 'Silence'
-
-
+var setupDbConnection = require('./db');
+var cors = require('cors')
+setupDbConnection()
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,9 +28,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(cors());
 app.use('/', index);
+app.use('/admin', admin);
+app.use('/api', api);
 app.use('/users', users);
+app.use('/articles', article);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

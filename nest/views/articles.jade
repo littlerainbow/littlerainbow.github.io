@@ -1,0 +1,14 @@
+extends layout
+block content
+    .article-list
+        each article in articles
+            article
+                header
+                    h2= article.title
+                    .article-author Author: #{article.author}
+                .article-content.clearfix
+                    .article-img
+                        img(src='public/upload/#{article.img}', alt='#{article.author}')
+                    p.article-description= article.content
+                footer
+                    a.article-more(href='/articles/#{article._id}') Read More

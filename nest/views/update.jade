@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    form(action='/articles/update/#{article._id}', method='POST')
+        label(for='title')
+            | Title
+            input#title(type='text', name='title' value='#{article.title}')
+        label(for='author')
+            | Author
+            input#author(type='text', name='author' value='#{article.author}')
+        label(for='text')
+            | Text
+            textarea#text(name='content', cols='30', rows='10') #{article.content}
+        input(type='submit', value='Send')

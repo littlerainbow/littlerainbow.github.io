@@ -1,0 +1,13 @@
+extends layout
+block content
+    .article-list
+        article
+            header
+                h2= article.title
+                .article-author Author: #{article.author}
+            .article-content.clearfix
+                p.article-description=  article.content
+            footer
+                form(action='/articles/#{article._id}', method='DELETE')
+                    button.article-more(type='submit') Delete
+                    a.article-more(href='/articles/update/#{article._id}') Update

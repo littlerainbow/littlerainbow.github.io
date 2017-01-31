@@ -6,3 +6,22 @@ body {
 a {
   color: #00B7FF;
 }
+
+article {
+  width: 600px;
+  border: 1px solid #777;
+  margin: 0 auto 20px;
+  border-radius: 5px;
+  padding: 10px;
+}
+.article-more {
+  text-decoration: none;
+  color: darkorange;
+}
+.article-more:hover {
+  text-decoration: underline;
+}
+.article-author {
+  text-align: right;
+  color: #ccc;
+}
